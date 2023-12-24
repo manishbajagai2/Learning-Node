@@ -1,15 +1,14 @@
-const EventEmitter = require("node:events")
+const PizzaShop = require("./pizza-shop.js")
+const DrinkMachine = require("./drink-machine.js")
 
+const pizzaShop = new PizzaShop()
+const drinkMachine = new DrinkMachine()
 
-const newEmitter = new EventEmitter()
-
-newEmitter.on('order',(size,topping) => {
+pizzaShop.on("order", (size, topping) => {
     console.log(`Order received with ${size} pizza and ${topping}`)
-})
-newEmitter.on('order',(size) => {
-    if(size){
-        console.log("Complementary drink added")
-    }
+    drinkMachine.serveDrinks(size, topping)
 })
 
-newEmitter.emit('order','large','mushroom')
+pizzaShop.order("large", "mushroom")
+
+pizzaShop.displayOrderNumber()
