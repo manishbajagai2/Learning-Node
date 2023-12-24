@@ -1,9 +1,15 @@
-function greet(name){
-    console.log("Hello",name)
-}
+const EventEmitter = require("node:events")
 
-function higherOrderFn(callback){
-    callback("Manish")
-}
 
-higherOrderFn(greet)
+const newEmitter = new EventEmitter()
+
+newEmitter.on('order',(size,topping) => {
+    console.log(`Order received with ${size} pizza and ${topping}`)
+})
+newEmitter.on('order',(size) => {
+    if(size){
+        console.log("Complementary drink added")
+    }
+})
+
+newEmitter.emit('order','large','mushroom')
