@@ -1,23 +1,13 @@
-// const superHero = require("./super-hero.js")
+const math = require("./math.js")
 
-// console.log(superHero.getName())
-// superHero.setName("Superman")
-// console.log(superHero.getName())
+// console.log(math(2,3))
 
-// const newSuperHero = require("./super-hero.js")
-// // Here required module is already called and cached,
-// // therefore even if new require should have Batman initialized,
-// // the cached module called with require before has setName initialized to Superman
-// console.log(newSuperHero.getName())
+// console.log(math.add(2,3))
+// console.log(math.subtract(2,3))
 
-// Now if we want different initialization each time :
+// 4th WAY (Destructuring)
 
-const superHero = require("./super-hero.js")
+const { add, subtract } = math
 
-const batman = new superHero("Batman")
-console.log(batman.getName())
-batman.setName('Bruce Wayne')
-console.log(batman.getName())
-
-const superman = new superHero("Superman")
-console.log(superman.getName())
+console.log(add(2, 3))
+console.log(subtract(2, 3))
