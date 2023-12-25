@@ -1,14 +1,7 @@
-const PizzaShop = require("./pizza-shop.js")
-const DrinkMachine = require("./drink-machine.js")
+const buffer = new Buffer.from("Manish")
 
-const pizzaShop = new PizzaShop()
-const drinkMachine = new DrinkMachine()
+buffer.write("Code")  // rewriting the buffer replacing the original temporal character
 
-pizzaShop.on("order", (size, topping) => {
-    console.log(`Order received with ${size} pizza and ${topping}`)
-    drinkMachine.serveDrinks(size, topping)
-})
-
-pizzaShop.order("large", "mushroom")
-
-pizzaShop.displayOrderNumber()
+console.log(buffer)
+console.log(buffer.toString())
+console.log(buffer.toJSON())
