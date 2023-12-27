@@ -1,20 +1,16 @@
-const fs = require("node:fs/promises")
+// A stream is a sequence of data that is being moved from one point to another over time
+// Ex a stream of data that is being transferred form one file to another within the same computer
 
-// console.log('First')
+const fs = require("node:fs")
 
-// fs.readFile("./hello.txt","utf-8")
-// .then(data => console.log(data))
-// .catch(err => console.log(err))
+const readableStream = fs.createReadStream("./file1.txt", {
+    encoding: "utf-8",
+    highWaterMark: 2, // since default buffer size used by stream is 64kb
+})
 
-// console.log('Second')
+const writableStream = fs.createWriteStream("./file2.txt")
 
-async function readFileData() {
-    try {
-        const data = await fs.readFile("./hello.txt", "utf-8")
-        console.log(data)
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-readFileData()
+readableStream.on("data", (chunck) => {
+    console.log(chunck)
+    writableStream.write(chunck)
+})
